@@ -75,7 +75,7 @@ const updateDeliveryAddress = async (req, res) => {
 
 const deleteDeliveryAddress = async (req, res) => {
    try {
-      const { deliveryAddressesId } = req.body
+      const { deliveryAddressesId } = req.query
 
       const deliveryAddresses = await DeliveryAddress.exists({
          _id: deliveryAddressesId,
