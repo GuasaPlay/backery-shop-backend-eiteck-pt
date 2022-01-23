@@ -1,6 +1,18 @@
 import { check, query } from 'express-validator'
 import validateFields from './checkErrors.validations'
 
+const getDelideryAdressesByUserValidations = [
+   query('userId')
+      .not()
+      .isEmpty()
+      .withMessage('El ID del usuario es obligatorio')
+      .bail()
+      .isMongoId()
+      .withMessage('El ID del usuario no es válido'),
+
+   validateFields,
+]
+
 const addDeliveryAddressValidations = [
    check('deliveryAddress.province')
       .not()
@@ -61,6 +73,7 @@ const deleteDeliveryAddressValidations = [
 ]
 
 export {
+   getDelideryAdressesByUserValidations,
    addDeliveryAddressValidations,
    updateDeliveryAddressValidations,
    deleteDeliveryAddressValidations,
