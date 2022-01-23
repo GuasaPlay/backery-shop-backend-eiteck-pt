@@ -7,6 +7,11 @@ import {
    getDelideryAdressesByUser,
    updateDeliveryAddress,
 } from '../controllers/deliveryAddress.controller'
+import {
+   addDeliveryAddressValidations,
+   deleteDeliveryAddressValidations,
+   updateDeliveryAddressValidations,
+} from '../validations/deliveryAddress.validations'
 
 const router = Router()
 
@@ -25,6 +30,7 @@ router.get(
 router.post(
    '/add-delivery-address',
    [
+      addDeliveryAddressValidations,
       passport.authenticate('jwt', {
          session: false,
       }),
@@ -36,6 +42,7 @@ router.post(
 router.put(
    '/update-delivery-address',
    [
+      updateDeliveryAddressValidations,
       passport.authenticate('jwt', {
          session: false,
       }),
@@ -47,6 +54,7 @@ router.put(
 router.delete(
    '/delete-delivery-address',
    [
+      deleteDeliveryAddressValidations,
       passport.authenticate('jwt', {
          session: false,
       }),
