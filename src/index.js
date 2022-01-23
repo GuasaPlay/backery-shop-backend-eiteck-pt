@@ -7,6 +7,8 @@ import config from './config'
 import DBConnection from './database/DBConnection'
 import { jwtStrategy } from './auth/passportAuth'
 
+import authRoutes from './routes/auth.routes'
+
 async function startExpressServer() {
    passport.use(jwtStrategy)
 
@@ -16,7 +18,9 @@ async function startExpressServer() {
    app.use(express.json())
    app.use(passport.initialize())
 
-   // const baseURL = '/api/v1'
+   const baseURL = '/api/v1'
+
+   app.use(`${baseURL}/auth`, authRoutes)
 
    app.get('/', (_res, req) => {
       req.json({ message: 'BACKEND BACKERY SHOP' })
