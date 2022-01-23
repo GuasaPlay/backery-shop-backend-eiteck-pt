@@ -11,9 +11,26 @@ const UserSchema = new Schema(
          type: String,
          required: true,
       },
+      phone: {
+         type: String,
+      },
+      deliveryAddresses: [
+         {
+            province: { type: String, required: true },
+            canton: { type: String, required: true },
+            postalCode: { type: String, required: true },
+            streetAddress: { type: String, required: true },
+            houseNumber: { type: String },
+            reference: { type: String, required: true },
+         },
+      ],
       password: {
          type: String,
          required: true,
+      },
+      resetPassword: {
+         type: Boolean,
+         default: true,
       },
       state: {
          type: Boolean,
