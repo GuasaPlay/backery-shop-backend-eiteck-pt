@@ -3,6 +3,42 @@ import User from '../models/User'
 
 import { generateJWT } from '../utils/jwt.util'
 
+const register = async (req, res) => {
+   try {
+      const { name, email, password } = req.body
+
+      const user = await User.findOne({ email }, ['_id', 'password', 'state'])
+
+      if (user)
+         return response400(
+            res,
+            'El correo electrónico ya se encuentra registrado'
+         )
+
+      const passwordEncryted = await User.encryptPassword(password)
+
+      const newUser = new User({
+         name,
+         email,
+         password: passwordEncryted,
+         role: 'CLIENT',
+      })
+
+      const userSaved = await newUser.save()
+
+      const accessToken = await generateJWT({ id: userSaved.id })
+
+      return res.status(200).json({
+         ok: true,
+         message: 'Usuario creado con éxito',
+         accessToken,
+      })
+   } catch (error) {
+      console.log(error)
+      return response500(res)
+   }
+}
+
 const login = async (req, res) => {
    try {
       const { email, password } = req.body
@@ -60,4 +96,4 @@ const getUser = async (req, res) => {
    }
 }
 
-export { login, logout, getUser }
+export { register, login, logout, getUser }

@@ -1,10 +1,22 @@
 import { Router } from 'express'
 import passport from 'passport'
 
-import { loginValidations } from '../validations/auth.validations'
-import { getUser, login, logout } from '../controllers/auth.controller'
+import {
+   loginValidations,
+   registerValidations,
+} from '../validations/auth.validations'
+
+import {
+   register,
+   getUser,
+   login,
+   logout,
+} from '../controllers/auth.controller'
 
 const router = Router()
+
+// User register
+router.post('/register', registerValidations, register)
 
 // User login
 router.post('/login', loginValidations, login)
