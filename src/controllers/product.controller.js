@@ -9,13 +9,22 @@ import { uploadResizeImages } from '../utils/resizeImage'
 
 const getProducts = async (req, res) => {
    try {
-      const { userId } = req.query
+      const { page = 1, search = '' } = req.query
 
-      const deliveryAddress = await DeliveryAddress.find({ userId })
+      const regex = new RegExp(search, 'i')
+
+      const options = { limit: 10, page }
+
+      const products = await Product.paginate(
+         {
+            $or: [{ name: regex }],
+         },
+         options
+      )
 
       return res.status(200).json({
          ok: true,
-         deliveryAddress,
+         products,
       })
    } catch (error) {
       console.log(error)

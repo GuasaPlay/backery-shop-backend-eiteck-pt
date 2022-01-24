@@ -3,43 +3,47 @@ import passport from 'passport'
 
 import isAdmin from '../middlewares/isAdmin.middleware'
 import validateImages from '../middlewares/validateImages.middleware'
+import { clearTempFiles } from '../helpers/clearTempFiles'
 
 import {
    deleteDeliveryAddress,
-   getDelideryAdressesByUser,
    updateDeliveryAddress,
 } from '../controllers/deliveryAddress.controller'
 
 import {
    addImagesToProduct,
    createProduct,
+   getProducts,
 } from '../controllers/product.controller'
 
 import {
    deleteDeliveryAddressValidations,
-   getDelideryAdressesByUserValidations,
    updateDeliveryAddressValidations,
 } from '../validations/deliveryAddress.validations'
-import { clearTempFiles } from '../helpers/clearTempFiles'
+
+import {
+   addImagesToProductValidations,
+   createProductValidations,
+} from '../validations/product.validations'
 
 const router = Router()
 
-// Get delivery addresses by User
+// Get products
 router.get(
-   '/get-delivery-addresses-by-user',
+   '/get-products',
    [
-      getDelideryAdressesByUserValidations,
       passport.authenticate('jwt', {
          session: false,
       }),
    ],
-   getDelideryAdressesByUser
+   getProducts
 )
 
 // Create product
 router.post(
    '/create-product',
    [
+      createProductValidations,
       passport.authenticate('jwt', {
          session: false,
       }),
@@ -52,6 +56,7 @@ router.post(
 router.post(
    '/add-images-to-product',
    [
+      addImagesToProductValidations,
       passport.authenticate('jwt', {
          session: false,
       }),
