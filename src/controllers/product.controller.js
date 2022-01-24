@@ -13,7 +13,9 @@ const getProducts = async (req, res) => {
 
       const regex = new RegExp(search, 'i')
 
-      const options = { limit: 10, page }
+      const populate = { path: 'images', select: ['-createdAt', '-updatedAt'] }
+
+      const options = { limit: 10, page, populate }
 
       const products = await Product.paginate(
          {
@@ -24,7 +26,7 @@ const getProducts = async (req, res) => {
 
       return res.status(200).json({
          ok: true,
-         products,
+         products: products,
       })
    } catch (error) {
       console.log(error)

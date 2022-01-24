@@ -40,7 +40,8 @@ const ProductSchema = new Schema(
 )
 
 ProductSchema.virtual('images', {
-   justOne: true,
+   ref: 'ProductImage',
+   justOne: false,
    foreignField: '_id',
    localField: 'imageIds',
 })
