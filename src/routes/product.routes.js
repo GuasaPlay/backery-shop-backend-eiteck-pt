@@ -29,15 +29,7 @@ import {
 const router = Router()
 
 // Get products
-router.get(
-   '/get-products',
-   [
-      passport.authenticate('jwt', {
-         session: false,
-      }),
-   ],
-   getProducts
-)
+router.get('/get-products', getProducts)
 
 // Create product
 router.post(
