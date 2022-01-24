@@ -24,12 +24,14 @@ export const jwtStrategy = new JWTStrategy(
          if (!user) return done(null, false)
          if (!user.state) return done(null, false)
 
-         const { _id, name, email, role, state } = user
+         const { _id, name, email, role, state, phone, resetPassword } = user
 
          return done(null, {
             uid: _id,
             name,
             email,
+            phone,
+            resetPassword,
             state,
             role,
          })

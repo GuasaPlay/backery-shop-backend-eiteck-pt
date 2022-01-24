@@ -10,7 +10,6 @@ import {
 import {
    addDeliveryAddressValidations,
    deleteDeliveryAddressValidations,
-   getDelideryAdressesByUserValidations,
    updateDeliveryAddressValidations,
 } from '../validations/deliveryAddress.validations'
 
@@ -20,7 +19,6 @@ const router = Router()
 router.get(
    '/get-delivery-addresses-by-user',
    [
-      getDelideryAdressesByUserValidations,
       passport.authenticate('jwt', {
          session: false,
       }),

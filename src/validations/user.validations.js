@@ -16,10 +16,16 @@ const createUserValidations = [
       .not()
       .isEmpty()
       .withMessage('El rol del usuario es obligatorio')
-      .isIn(['CLIENT', 'ADMIN', 'DELIVERY'])
+      .isIn(['CLIENT', 'ADMIN', 'DEALER'])
       .withMessage('El rol contiene un valor no válido'),
 
    validateFields,
 ]
 
-export { createUserValidations }
+const updateUserInfoValidations = [
+   check('phone').isNumeric().withMessage('Solo puede ingresar numeros'),
+
+   validateFields,
+]
+
+export { createUserValidations, updateUserInfoValidations }

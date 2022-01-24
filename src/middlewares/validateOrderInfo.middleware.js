@@ -3,7 +3,9 @@ import DeliveryAddress from '../models/DeliveryAddress'
 import User from '../models/User'
 
 const validateOrderInfo = async (req, res, next) => {
-   const { client, deliveryAddress, dealer } = req.body
+   const { deliveryAddress, dealer } = req.body
+
+   const client = req.user.uid.toString()
 
    const clientExists = await User.exists({ _id: client, status: true })
 

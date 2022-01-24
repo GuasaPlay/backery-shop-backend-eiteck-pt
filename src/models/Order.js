@@ -35,14 +35,19 @@ const OrderSchema = new Schema(
             },
          },
       ],
-      status: {
+      paymentMethod: {
          type: String,
-         default: 'PENDING',
-         enum: ['PENDING', 'CANCELED', 'DELIVERED'],
+         required: true,
+         enum: ['CASH', 'CARD'],
       },
       totalPay: {
          type: Number,
          required: true,
+      },
+      status: {
+         type: String,
+         default: 'PENDING',
+         enum: ['PENDING', 'CANCELED', 'DELIVERED'],
       },
    },
    {

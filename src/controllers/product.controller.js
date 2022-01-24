@@ -1,5 +1,4 @@
-import { response400, response500 } from '../helpers/responseHandlers'
-import DeliveryAddress from '../models/DeliveryAddress'
+import { response500 } from '../helpers/responseHandlers'
 
 import fs from 'fs'
 
@@ -125,74 +124,4 @@ const addImagesToProduct = async (req, res) => {
    }
 }
 
-const updateProduct = async (req, res) => {
-   try {
-      const { deliveryAddressesId, deliveryAddress } = req.body
-
-      const deliveryAddressFound = await DeliveryAddress.exists({
-         _id: deliveryAddressesId,
-      })
-
-      if (!deliveryAddressFound)
-         return response400(
-            res,
-            'No existe ningun dirección de entrega con ese ID'
-         )
-
-      const deliveryAddressesUpdated = await DeliveryAddress.findByIdAndUpdate(
-         deliveryAddressesId,
-         {
-            $set: { ...deliveryAddress },
-         },
-         { new: true }
-      )
-
-      return res.status(200).json({
-         ok: true,
-         message: 'Dirección de entrega actualizada con éxito',
-         deliveryAddresses: deliveryAddressesUpdated,
-      })
-   } catch (error) {
-      console.log(error)
-      return response500(res)
-   }
-}
-
-const deleteProduct = async (req, res) => {
-   try {
-      const { deliveryAddressesId } = req.query
-
-      const deliveryAddresses = await DeliveryAddress.exists({
-         _id: deliveryAddressesId,
-      })
-
-      if (!deliveryAddresses)
-         return response400(
-            res,
-            'No existe ningun dirección de entrega con ese ID'
-         )
-
-      await DeliveryAddress.deleteOne({
-         _id: deliveryAddressesId,
-      })
-
-      return res.status(200).json({
-         ok: true,
-         message: 'Dirección de entrega eliminada con éxito',
-         deliveryAddresses: {
-            id: deliveryAddressesId,
-         },
-      })
-   } catch (error) {
-      console.log(error)
-      return response500(res)
-   }
-}
-
-export {
-   getProducts,
-   createProduct,
-   addImagesToProduct,
-   updateProduct,
-   deleteProduct,
-}
+export { getProducts, createProduct, addImagesToProduct }

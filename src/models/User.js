@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose'
 import bcrypt from 'bcryptjs'
+import mongoosePaginate from 'mongoose-paginate-v2'
 
 const UserSchema = new Schema(
    {
@@ -44,6 +45,8 @@ const UserSchema = new Schema(
       // },
    }
 )
+
+UserSchema.plugin(mongoosePaginate)
 
 UserSchema.statics.encryptPassword = async password => {
    const salt = await bcrypt.genSalt()

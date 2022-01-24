@@ -6,20 +6,10 @@ import validateImages from '../middlewares/validateImages.middleware'
 import { clearTempFiles } from '../helpers/clearTempFiles'
 
 import {
-   deleteDeliveryAddress,
-   updateDeliveryAddress,
-} from '../controllers/deliveryAddress.controller'
-
-import {
    addImagesToProduct,
    createProduct,
    getProducts,
 } from '../controllers/product.controller'
-
-import {
-   deleteDeliveryAddressValidations,
-   updateDeliveryAddressValidations,
-} from '../validations/deliveryAddress.validations'
 
 import {
    addImagesToProductValidations,
@@ -60,30 +50,6 @@ router.post(
       },
    ],
    addImagesToProduct
-)
-
-// Update delivery address
-router.put(
-   '/update-delivery-address',
-   [
-      updateDeliveryAddressValidations,
-      passport.authenticate('jwt', {
-         session: false,
-      }),
-   ],
-   updateDeliveryAddress
-)
-
-// Delete delivery address
-router.delete(
-   '/delete-delivery-address',
-   [
-      deleteDeliveryAddressValidations,
-      passport.authenticate('jwt', {
-         session: false,
-      }),
-   ],
-   deleteDeliveryAddress
 )
 
 export default router

@@ -7,11 +7,25 @@ const getOrders = async (req, res) => {
    try {
       const { page = 1 } = req.query
 
-      const populate = {
-         path: 'detail.product',
-         select: ['name', 'images'],
-         populate: { path: 'images', select: ['-createdAt', '-updatedAt'] },
-      }
+      const populate = [
+         {
+            path: 'client',
+            select: ['name', 'phone'],
+         },
+         {
+            path: 'dealer',
+            select: ['name'],
+         },
+         {
+            path: 'deliveryAddress',
+            select: ['-createdAt', '-updatedAt'],
+         },
+         {
+            path: 'detail.product',
+            select: ['name', 'images'],
+            // populate: { path: 'images', select: ['-createdAt', '-updatedAt'] },
+         },
+      ]
 
       const options = { limit: 10, page, populate }
 
@@ -31,11 +45,25 @@ const getOrdersByDealer = async (req, res) => {
    try {
       const { page = 1, dealerId } = req.query
 
-      const populate = {
-         path: 'detail.product',
-         select: ['name', 'images'],
-         populate: { path: 'images', select: ['-createdAt', '-updatedAt'] },
-      }
+      const populate = [
+         {
+            path: 'client',
+            select: ['name', 'phone'],
+         },
+         {
+            path: 'dealer',
+            select: ['name'],
+         },
+         {
+            path: 'deliveryAddress',
+            select: ['-createdAt', '-updatedAt'],
+         },
+         {
+            path: 'detail.product',
+            select: ['name', 'images'],
+            // populate: { path: 'images', select: ['-createdAt', '-updatedAt'] },
+         },
+      ]
 
       const options = { limit: 10, page, populate }
 
@@ -50,10 +78,51 @@ const getOrdersByDealer = async (req, res) => {
       return response500(res)
    }
 }
+const getOrdersByClient = async (req, res) => {
+   try {
+      const { page = 1 } = req.query
+
+      const clientId = req.user.uid.toString()
+
+      const populate = [
+         {
+            path: 'client',
+            select: ['name', 'phone'],
+         },
+         {
+            path: 'dealer',
+            select: ['name'],
+         },
+         {
+            path: 'deliveryAddress',
+            select: ['-createdAt', '-updatedAt'],
+         },
+         {
+            path: 'detail.product',
+            select: ['name', 'images'],
+            // populate: { path: 'images', select: ['-createdAt', '-updatedAt'] },
+         },
+      ]
+
+      const options = { limit: 10, page, populate }
+
+      const orders = await Order.paginate({ client: clientId }, options)
+
+      return res.status(200).json({
+         ok: true,
+         orders,
+      })
+   } catch (error) {
+      console.log(error)
+      return response500(res)
+   }
+}
 
 const createOrder = async (req, res) => {
    try {
-      const { client, deliveryAddress, dealer, detail } = req.body
+      const { deliveryAddress, dealer, detail, paymentMethod } = req.body
+
+      const client = req.user.uid.toString()
 
       let totalPay = 0
       detail.forEach(({ quantity, price }) => {
@@ -66,6 +135,7 @@ const createOrder = async (req, res) => {
          dealer,
          detail,
          totalPay,
+         paymentMethod,
       })
 
       const orderSaved = await newOrder.save()
@@ -91,6 +161,7 @@ const createOrder = async (req, res) => {
       return response500(res)
    }
 }
+
 const dispatchOrder = async (req, res) => {
    try {
       const { orderId } = req.body
@@ -119,4 +190,10 @@ const dispatchOrder = async (req, res) => {
    }
 }
 
-export { createOrder, getOrdersByDealer, getOrders, dispatchOrder }
+export {
+   createOrder,
+   getOrdersByDealer,
+   getOrdersByClient,
+   getOrders,
+   dispatchOrder,
+}
