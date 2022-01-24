@@ -31,7 +31,7 @@ const addDeliveryAddress = async (req, res) => {
 
       return res.status(200).json({
          ok: true,
-         message: 'Dirección de entrega agregada creado con éxito',
+         message: 'Dirección de entrega agregada con éxito',
          deliveryAddress: deliveryAddressSaved,
       })
    } catch (error) {
