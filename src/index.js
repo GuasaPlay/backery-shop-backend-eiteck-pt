@@ -12,6 +12,7 @@ import authRoutes from './routes/auth.routes'
 import userRoutes from './routes/user.routes'
 import deliveryAddressRoutes from './routes/deliveryAddress.routes'
 import productRoutes from './routes/product.routes'
+import orderRoutes from './routes/order.routes'
 
 async function startExpressServer() {
    passport.use(jwtStrategy)
@@ -21,7 +22,6 @@ async function startExpressServer() {
    app.use(cors())
    app.use(express.json())
    app.use(passport.initialize())
-   // app.use(fileUpload())
    app.use(fileUpload({ useTempFiles: true }))
 
    const baseURL = '/api/v1'
@@ -30,6 +30,7 @@ async function startExpressServer() {
    app.use(`${baseURL}/user`, userRoutes)
    app.use(`${baseURL}/delivery-address`, deliveryAddressRoutes)
    app.use(`${baseURL}/product`, productRoutes)
+   app.use(`${baseURL}/order`, orderRoutes)
 
    app.get('/', (_res, req) => {
       req.json({ message: 'BACKEND BACKERY SHOP' })
