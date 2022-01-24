@@ -14,16 +14,6 @@ const UserSchema = new Schema(
       phone: {
          type: String,
       },
-      deliveryAddresses: [
-         {
-            province: { type: String, required: true },
-            canton: { type: String, required: true },
-            postalCode: { type: String, required: true },
-            streetAddress: { type: String, required: true },
-            houseNumber: { type: String },
-            reference: { type: String, required: true },
-         },
-      ],
       password: {
          type: String,
          required: true,
@@ -44,14 +34,14 @@ const UserSchema = new Schema(
    {
       timestamps: true,
       versionKey: false,
-      toJSON: {
-         getters: true,
-         virtuals: true,
-      },
-      toObject: {
-         getters: true,
-         virtuals: true,
-      },
+      // toJSON: {
+      //    getters: true,
+      //    virtuals: true,
+      // },
+      // toObject: {
+      //    getters: true,
+      //    virtuals: true,
+      // },
    }
 )
 

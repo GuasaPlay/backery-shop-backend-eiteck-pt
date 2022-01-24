@@ -6,7 +6,7 @@ const getDelideryAdressesByUser = async (req, res) => {
    try {
       const { userId } = req.query
 
-      const deliveryAddress = await DeliveryAddress.find({ userId })
+      const deliveryAddress = await DeliveryAddress.find({ user: userId })
 
       return res.status(200).json({
          ok: true,
@@ -21,7 +21,7 @@ const getDelideryAdressesByUser = async (req, res) => {
 const addDeliveryAddress = async (req, res) => {
    try {
       const { deliveryAddress } = req.body
-      const { userId } = deliveryAddress
+      const { user: userId } = deliveryAddress
 
       const user = await User.exists({ _id: userId })
       if (!user) return response400(res, 'No existe ningun usuario con ese ID')

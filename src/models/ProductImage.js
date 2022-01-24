@@ -22,7 +22,7 @@ const ProductImageSchema = new Schema(
             },
          },
       ],
-      productId: {
+      product: {
          type: Schema.Types.ObjectId,
          ref: 'Product',
       },
@@ -30,14 +30,14 @@ const ProductImageSchema = new Schema(
    {
       timestamps: true,
       versionKey: false,
-      toJSON: {
-         getters: true,
-         virtuals: true,
-      },
-      toObject: {
-         getters: true,
-         virtuals: true,
-      },
+      // toJSON: {
+      //    getters: true,
+      //    virtuals: true,
+      // },
+      // toObject: {
+      //    getters: true,
+      //    virtuals: true,
+      // },
    }
 )
 

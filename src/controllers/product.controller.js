@@ -40,6 +40,7 @@ const saveProductImages = async (req, productId) => {
 
    if (Array.isArray(req.files.images)) {
       // Upload images and save in DB when there is more than one image
+
       const { images } = req.files
 
       const promisesOfUpload = images.map(async image => {
@@ -53,10 +54,11 @@ const saveProductImages = async (req, productId) => {
       const allPreviews = await Promise.all(promisesOfUpload)
 
       const mapedAllPreviews = allPreviews.map(all => {
-         return { previews: all, productId }
+         return { previews: all, product: productId }
       })
 
       const productImageSaved = await ProductImage.insertMany(mapedAllPreviews)
+
       productImages = productImageSaved
       imageIds = productImageSaved.map(image => image.id)
    } else {
@@ -70,9 +72,10 @@ const saveProductImages = async (req, productId) => {
       const productImageSaved = await ProductImage.insertMany([
          {
             previews,
-            productId,
+            product: productId,
          },
       ])
+
       productImages = productImageSaved
       imageIds = productImageSaved.map(image => image.id)
    }
@@ -101,8 +104,6 @@ const addImagesToProduct = async (req, res) => {
    try {
       const { productId } = req.query
 
-      console.log(req.files.images)
-
       const { imageIds, productImages } = await saveProductImages(
          req,
          productId
@@ -110,13 +111,13 @@ const addImagesToProduct = async (req, res) => {
 
       await Product.updateOne(
          { _id: productId },
-         { $push: { imageIds: { $each: imageIds } } }
+         { $push: { images: { $each: imageIds } } }
       )
 
       return res.status(200).json({
          ok: true,
          message: 'Imagenes del producto agregadas con éxito',
-         productImages,
+         images: productImages,
       })
    } catch (error) {
       console.log(error)

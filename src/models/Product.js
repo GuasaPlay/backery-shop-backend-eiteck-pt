@@ -1,4 +1,4 @@
-import { Schema, model, Types } from 'mongoose'
+import { Schema, model } from 'mongoose'
 import mongoosePaginate from 'mongoose-paginate-v2'
 
 const ProductSchema = new Schema(
@@ -18,7 +18,7 @@ const ProductSchema = new Schema(
          type: Number,
          default: true,
       },
-      imageIds: [
+      images: [
          {
             type: Schema.Types.ObjectId,
             ref: 'ProductImage',
@@ -28,26 +28,17 @@ const ProductSchema = new Schema(
    {
       timestamps: true,
       versionKey: false,
-      toJSON: {
-         getters: true,
-         virtuals: true,
-      },
-      toObject: {
-         getters: true,
-         virtuals: true,
-      },
+      // toJSON: {
+      //    getters: true,
+      //    virtuals: true,
+      // },
+      // toObject: {
+      //    getters: true,
+      //    virtuals: true,
+      // },
    }
 )
 
-ProductSchema.virtual('images', {
-   ref: 'ProductImage',
-   justOne: false,
-   foreignField: '_id',
-   localField: 'imageIds',
-})
-
 ProductSchema.plugin(mongoosePaginate)
-
-ProductSchema.statics.generateObjectId = () => Types.ObjectId()
 
 export default model('Product', ProductSchema, 'Products')

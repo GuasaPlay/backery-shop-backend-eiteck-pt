@@ -34,7 +34,7 @@ const addDeliveryAddressValidations = [
       .isEmpty()
       .withMessage('La dirección es obligatoria'),
 
-   check('deliveryAddress.userId')
+   check('deliveryAddress.user')
       .not()
       .isEmpty()
       .withMessage('El ID del usuario obligatorio')
@@ -44,6 +44,7 @@ const addDeliveryAddressValidations = [
 
    validateFields,
 ]
+
 const updateDeliveryAddressValidations = [
    check('deliveryAddressesId')
       .not()
@@ -53,7 +54,7 @@ const updateDeliveryAddressValidations = [
       .isMongoId()
       .withMessage('El ID de la dirección de entrega no es válido'),
 
-   check('deliveryAddress.userId')
+   check('deliveryAddress.user')
       .isMongoId()
       .withMessage('El ID del usuario no es válido'),
 

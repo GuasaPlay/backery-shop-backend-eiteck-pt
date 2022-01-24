@@ -25,7 +25,7 @@ const DeliveryAddressSchema = new Schema(
          type: String,
          required: true,
       },
-      userId: {
+      user: {
          type: Schema.Types.ObjectId,
          required: true,
          ref: 'User',
@@ -34,22 +34,16 @@ const DeliveryAddressSchema = new Schema(
    {
       timestamps: true,
       versionKey: false,
-      toJSON: {
-         getters: true,
-         virtuals: true,
-      },
-      toObject: {
-         getters: true,
-         virtuals: true,
-      },
+      // toJSON: {
+      //    getters: true,
+      //    virtuals: true,
+      // },
+      // toObject: {
+      //    getters: true,
+      //    virtuals: true,
+      // },
    }
 )
-
-DeliveryAddressSchema.virtual('user', {
-   justOne: true,
-   foreignField: '_id',
-   localField: 'userId',
-})
 
 export default model(
    'DeliveryAddress',

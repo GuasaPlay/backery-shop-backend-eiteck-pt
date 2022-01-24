@@ -9,17 +9,17 @@ const getOrders = async (req, res) => {
 
       const populate = {
          path: 'detail.product',
-         select: ['name', 'imageIds'],
-         // populate: { path: 'images', select: ['-createdAt', '-updatedAt'] },
+         select: ['name', 'images'],
+         populate: { path: 'images', select: ['-createdAt', '-updatedAt'] },
       }
 
       const options = { limit: 10, page, populate }
 
-      const products = await Order.paginate({}, options)
+      const orders = await Order.paginate({}, options)
 
       return res.status(200).json({
          ok: true,
-         products: products,
+         orders,
       })
    } catch (error) {
       console.log(error)
@@ -33,17 +33,17 @@ const getOrdersByDealer = async (req, res) => {
 
       const populate = {
          path: 'detail.product',
-         select: ['name', 'imageIds'],
-         // populate: { path: 'images', select: ['-createdAt', '-updatedAt'] },
+         select: ['name', 'images'],
+         populate: { path: 'images', select: ['-createdAt', '-updatedAt'] },
       }
 
       const options = { limit: 10, page, populate }
 
-      const products = await Order.paginate({ dealer: dealerId }, options)
+      const orders = await Order.paginate({ dealer: dealerId }, options)
 
       return res.status(200).json({
          ok: true,
-         products: products,
+         orders,
       })
    } catch (error) {
       console.log(error)

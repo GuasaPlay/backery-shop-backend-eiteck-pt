@@ -1,4 +1,4 @@
-import { Schema, model, Types } from 'mongoose'
+import { Schema, model } from 'mongoose'
 import mongoosePaginate from 'mongoose-paginate-v2'
 
 const OrderSchema = new Schema(
@@ -48,26 +48,17 @@ const OrderSchema = new Schema(
    {
       timestamps: true,
       versionKey: false,
-      toJSON: {
-         getters: true,
-         virtuals: true,
-      },
-      toObject: {
-         getters: true,
-         virtuals: true,
-      },
+      // toJSON: {
+      //    getters: true,
+      //    virtuals: true,
+      // },
+      // toObject: {
+      //    getters: true,
+      //    virtuals: true,
+      // },
    }
 )
 
-OrderSchema.virtual('user', {
-   ref: 'User',
-   justOne: true,
-   foreignField: '_id',
-   localField: 'userId',
-})
-
 OrderSchema.plugin(mongoosePaginate)
-
-OrderSchema.statics.generateObjectId = () => Types.ObjectId()
 
 export default model('Order', OrderSchema, 'Orders')
