@@ -12,4 +12,4 @@ La siguente lista enumera los principales paquetes que utilice para poder realiz
 
 ### Enfoque
 
-Para realizar este ejercicio utilice el enfoque de capas
+Para realizar este ejercicio utilice el enfoque de capas el cual

@@ -1,0 +1,555 @@
+{
+	"info": {
+		"_postman_id": "38fdaa1a-fd46-48e0-af44-798ed2cdca35",
+		"name": "Backery Shop - API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sandra@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/v1/auth/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sandra Espinoza\",\r\n    \"email\": \"sandra@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/v1/auth/register",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get auth user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/v1/auth/get-user",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"get-user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/v1/user/get-users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"get-users"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Jairo Velez\",\r\n    \"email\": \"jairo@gmail.com\",\r\n    \"role\": \"DEALER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/v1/user/create-user",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"create-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user info",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sandra Estefania Espinoza\",\r\n    \"phone\": \"0990813254\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/v1/user/update-user-info",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"update-user-info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delivery Address",
+			"item": [
+				{
+					"name": "Get delivery addresses by user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/v1/delivery-address/get-delivery-addresses-by-user",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"delivery-address",
+								"get-delivery-addresses-by-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add delivery address",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deliveryAddress\": {\r\n        \"province\": \"AZUAY\",\r\n        \"canton\": \"CUENCA\",\r\n        \"postalCode\": \"010113\",\r\n        \"streetAddress\": \"Juan Jose Flores y Garcia Moreno\",\r\n        \"houseNumber\": \"50-12\",\r\n        \"reference\": \"Casa de dos plantas con vallas\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/v1/delivery-address/add-delivery-address",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"delivery-address",
+								"add-delivery-address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update delivery address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deliveryAddressesId\": \"61eed086decfc905237cf961\",\r\n    \"deliveryAddress\": {\r\n        \"province\": \"AZUAY\",\r\n        \"canton\": \"CUENCA\",\r\n        \"postalCode\": \"010113\",\r\n        \"streetAddress\": \"Juan jose flores y Garcia Moreno\",\r\n        \"houseNumber\": \"12-28\",\r\n        \"reference\": \"Casa de dos plantas color marrón\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/v1/delivery-address/update-delivery-address",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"delivery-address",
+								"update-delivery-address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete delivery address",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/v1/delivery-address/delete-delivery-address?deliveryAddressesId=61eed086decfc905237cf961",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"delivery-address",
+								"delete-delivery-address"
+							],
+							"query": [
+								{
+									"key": "deliveryAddressesId",
+									"value": "61eed086decfc905237cf961"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/v1/product/get-products",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"get-products"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Caja de pan de cereales\",\r\n    \"desc\": \"Pan a base de harina de trigo con cereales\",\r\n    \"price\": 2.00,\r\n    \"stock\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/v1/product/create-product",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"create-product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add images to product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/C:/Users/oscar/Desktop/CURSOS/PRUEBA TECNICA EITECK/IMAGENES DE PRUEBA/pan 1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/v1/product/add-images-to-product?productId=61eed564efaae88dd2c13b03",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"add-images-to-product"
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "61eed564efaae88dd2c13b03"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Get orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/v1/order/get-orders",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"get-orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get orders by dealer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/v1/order/get-orders-by-dealer?dealerId=61ecca05776f3a9f8e66e2f5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"get-orders-by-dealer"
+							],
+							"query": [
+								{
+									"key": "dealerId",
+									"value": "61ecca05776f3a9f8e66e2f5"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get orders by client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/v1/order/get-orders-by-client",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"get-orders-by-client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deliveryAddress\": \"61eed086decfc905237cf961\",\r\n    \"dealer\": \"61ecca05776f3a9f8e66e2f5\",\r\n    \"detail\": [\r\n        {\r\n            \"product\": \"61eed51f7a092b801935b7b7\",\r\n            \"quantity\": 2,\r\n            \"price\": 0.75\r\n        },\r\n        {\r\n            \"product\": \"61eed564efaae88dd2c13b03\",\r\n            \"quantity\": 1,\r\n            \"price\": 1.5\r\n        }\r\n    ],\r\n    \"paymentMethod\": \"CASH\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/v1/order/create-order",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"create-order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWVjZDFjN2MxZjA5ZDg4NjdlMDBkN2EiLCJ0b2tlbklkIjoibUl3dDh1alBpbm5PYlZUc0ZIM3EiLCJpYXQiOjE2NDMwNTMzNzcsImV4cCI6MTY0MzEzOTc3N30.pqXvQQNLjMGSJWQxfOcuSm4AkiM9NtRXhR4IliLLzB0",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://backery-shop-backend-eiteck-pt.herokuapp.com",
+			"type": "string"
+		}
+	]
+}
