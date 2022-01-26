@@ -35,13 +35,32 @@ Hay muchas mejoras que se puede realizar en la aplicación, las mismas que no pu
 -  Para la colección de productos se debería agregar un endpoint para actualizar solo el `stock` de los productos, en este caso estoy utilizando un endpoint para actualizar toda las información del producto incluido el stock.
 -  Para esta API estoy utilizando `cors` para que cualquiera pueda conectarse a la API, lo correcto seria agregar solo las IP que pueden tener acceso a la API.
 
-## ¿Cómo probar la aplicación?
+## ¿Cómo probar la API?
 
 Actualmente la aplicación esta deplegada en Heroku, puede ingresar desde el siguente enlace y podrá observar una consulta a los productos que ya estan ingresados: [https://backery-shop-backend-eiteck-pt.herokuapp.com/api/v1/product/get-products](https://backery-shop-backend-eiteck-pt.herokuapp.com/api/v1/product/get-products)
 
 **Nota:** Cuando abra el enlace pueda que tarde un poco en cargar, esto debido a que Heroku duerme el servidor para ahorrar recursos ya que esta alojado en versión gratuita.
 
 Para probar los endpoint que estan disponibles en la API, he creado una colección en [Postman](https://www.postman.com/) que los podemos descargar haciendo click aqui [aqui](https://gist.github.com/GuasaPlay/ac120c342eae08fe3f3381147a216801), luego podemos importar dicha colección a Postman para hacer uso de ella y asi facilite hacer las pruebas.
+
+El API cuenta con una autenticación por lo cual se ha creado los tres usuarios `administrador`, `repartidor` y `cliente` sus respectivas credenciales son las siguientes:
+
+```json
+{
+   "ADMIN": {
+      "email": "guasaplay@gmail.com",
+      "password": "123456"
+   },
+   "DEALER": {
+      "email": "jairo@gmail.com",
+      "password": "123456"
+   },
+   "CLIENT": {
+      "email": "sandra@gmail.com",
+      "password": "123456"
+   }
+}
+```
 
 Para saber cuales son los endpoint y como hacer las peticiones le pido de favor que revise el siguente video donde se explica toda la API en detalle haciendo click en el siguente enlace:
 [https://www.youtube.com/](https://www.youtube.com/)
