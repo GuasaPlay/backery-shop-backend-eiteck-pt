@@ -10,6 +10,16 @@ La siguente lista enumera los principales paquetes que utilice para poder realiz
 -  **mongoose**: Nos ayuda con las consultas a MongoDB y la definición de los esquemas.
 -  **Babel**: Ayuda con la compilacion o (trasnpilación) de código para poder utilizar las ultimas caracteristicas de Javascript.
 
+## Caracteristicas
+
+-  Cuenta con autenticación mediante `JWT` (Json Web Token) junto a passport.js.
+-  Con los roles se esta validando el nivel acceso a los endpoints
+-  Se esta validando los campos de ingreso de datos con errores personalizados.
+-  El servidor cuenta con una utilidad para procesar la imagenes de los productos es decir:
+   -  Se puede redimensionar las imagenes en varios tamaños, de esta manera se esta optimizando los recursos
+   -  Se puede agregar diferentes formatos de imagen pero el servidor las convierte todas a `.webp` que es uno de los mejores formatos para los navegadores
+   -  La imagenes luego de ser procesadas se suben a AWS S3
+
 ## Enfoque
 
 Para realizar este API utilice el enfoque de capas el cual tenemos diferentes módulos para abordar diferentes preocupaciones pertinentes a nuestra aplicación. Es decir nuestro servidor tiene los diferentes módulos (o capas) que deben asumir la responsabilidad de atender a diferentes aspectos del procesamiento de una respuesta para una solicitud del cliente.
@@ -25,7 +35,7 @@ Estos aspectos se pueden manejar programando tres capas diferentes como se muest
 
 ## Metodología
 
-Utilice SCRUM como metodologpia ya que es agil y flexible, de esta manera se trabajó en cada una de las iteraciones en las mismas que se mejorando cada vez mas la aplicación. Esto lo se puede comprobar en los commits del proyecto.
+Utilice SCRUM como metodología ya que es agil y flexible, de esta manera se trabajó en cada una de las iteraciones en las mismas que se mejorando cada vez mas la aplicación. Esto lo se puede comprobar en los commits del proyecto.
 
 ## Posibles mejoras
 
@@ -63,7 +73,7 @@ El API cuenta con una autenticación por lo cual se ha creado los tres usuarios 
 ```
 
 Para saber cuales son los endpoint y como hacer las peticiones le pido de favor que revise el siguente video donde se explica toda la API en detalle haciendo click en el siguente enlace:
-[https://www.youtube.com/](https://www.youtube.com/)
+[https://www.youtube.com/watch?v=fQeeB3gninM](https://www.youtube.com/watch?v=fQeeB3gninM)
 
 ## Ejecutar el proyecto en local
 
@@ -88,7 +98,7 @@ AWS_SECRET=
 AWS_BUCKET_NAME=
 ```
 
-Finalmente ejecutamos los siguentes comando con `npm`:
+Finalmente ejecutamos los siguentes comandos con `npm`:
 
 ```bash
 # Instalar las dependencias
