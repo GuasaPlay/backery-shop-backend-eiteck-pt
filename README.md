@@ -73,7 +73,7 @@ El API cuenta con una autenticación por lo cual se ha creado los tres usuarios 
 ```
 
 Para saber cuales son los endpoint y como hacer las peticiones le pido de favor que revise el siguente video donde se explica toda la API en detalle haciendo click en el siguente enlace:
-[https://vimeo.com/670307638](https://vimeo.com/670307638)
+[https://drive.google.com/file/d/1ckqZVMIx6hvMaPp3WLffzymSpQlAsCLE/view?usp=sharing](https://drive.google.com/file/d/1ckqZVMIx6hvMaPp3WLffzymSpQlAsCLE/view?usp=sharing)
 
 ## Ejecutar el proyecto en local
 
